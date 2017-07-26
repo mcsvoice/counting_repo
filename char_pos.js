@@ -7,15 +7,33 @@ var theObject = {};
 for (var i = 0; i < (mLetters.length); i++) {
 
     if (theObject[mLetters[i]]) {
-      theObject[mLetters[i]] = theObject[mLetters[i]] + 1;
+      theObject[mLetters[i]].push(i)
     } else {
-      theObject[mLetters[i]] = 1;
+      theObject[mLetters[i]] = [i]
     }
+
 }
 
 console.log(theObject);
 
 
-// my object contains "A : #" currently
-// I need the object to contain another key value associated with the first key value
-// so A : 1 needs an APos : [1], the second key contains
+// I need to make theObject[mLetters[i]] = an array with the position of the letter
+
+
+// var obj = {};
+
+// obj.first = 1;
+// obj['second-hyphen'] = 2;
+
+// var key = 'third';
+
+// obj.key = 3;
+// obj[key] = 3;
+
+
+// {
+//   first: ['1']
+//   second: 2,
+//   key: 3,
+//   third: 3
+// }
