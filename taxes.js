@@ -22,7 +22,7 @@ var companySalesData = [
   }
 ];
 
-//I need to get all the sales #s out and add them up
+//I need to get all the sales #s together somehow
 //I need the sales total to be separated by name and province
 //I need the sales total to be multiplied by the tax rate and the tax rate to be stored
 //I need to create an object with the NAME from the first object in a new object
@@ -31,12 +31,45 @@ var companySalesData = [
 //"FOR every property IN the obj object, assign each property to the PROPT variable in turn".
 
 function calculateSalesTax(salesData, taxRates) {
-  for (var i = 0; i < salesData.length; i++) {
-    var province = salesData.province;
+
+ results = {};
+
+// omg just use this i a million times sure why not it all happens on the same step jesus no
+for (var i in salesData) {
+  var sumThing = salesData[i].sales.reduce(function(a, b) {
+
+    //thank u sum.js im glad I cut corners in you
+    return a + b;
+
+  }, 0); //this is exactly from MDN because I don't understand
+  //THIS "ADDS" BY REDUCING I HATE IT
+
+
+  if (!(salesData[i].name in results)) {
+    results[salesData[i]['name']] = {};
   }
+  //Don said to use ! (no's) instead of the opposite today so it's smaller?
+
+  if (!('totalSales' in results[salesData[i]['name']])) {
+    results[salesData[i]['name']]['totalSales'] = 0;
+    //^ DO   ^ FROM  ^LOOP ^ADULT    ^BABY       ^ DAVID SAYS INITIALIZE
+  }
+  results[salesData[i]['name']]['totalSales'] += sumThing;
+  //console.log(results[salesData[i]['name']]['totalSales']);
+  //
+
+  if (!('totalTaxes' in results[salesData[i]['name']])) {
+    results[salesData[i]['name']]['totalTaxes'] = 0;
+  }
+  //
+  results[salesData[i]['name']]['totalTaxes'] += sumThing * taxRates[salesData[i].province];
+}
+console.log(results);
 }
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
+
+//use reduce?
 
 /* Expected Results:
 {
