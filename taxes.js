@@ -66,6 +66,7 @@ for (var i in salesData) {
 }
 console.log(results);
 }
+//don't speak to me or my son ever again
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
 
